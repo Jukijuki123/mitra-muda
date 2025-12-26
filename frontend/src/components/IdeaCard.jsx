@@ -8,9 +8,9 @@ export const IdeaCard = ({
   onClick,
 }) => {
   return (
-    <div className="bg-white rounded-xl shadow p-5 flex flex-col justify-between">
+    <div className="bg-white border border-primary rounded-xl p-5 flex flex-col justify-between">
       <div>
-        <span className="text-sm text-blue-600 font-semibold">
+        <span className="text-sm text-blue-600 font-semibold px-5 py-1 bg-blue-600/20 rounded-full">
           {kategori?.label}
         </span>
 
@@ -18,7 +18,7 @@ export const IdeaCard = ({
           {judul}
         </h3>
 
-        <p className="text-gray-600 text-sm mt-2 line-clamp-3">
+        <p className="text-gray-700 text-sm mt-2 line-clamp-2">
           {deskripsi}
         </p>
       </div>
@@ -30,7 +30,7 @@ export const IdeaCard = ({
 
         <button
           onClick={onClick}
-          className="text-blue-600 font-semibold hover:underline"
+          className="text-sm text-white font-semibold px-5 py-1 bg-blue-600 rounded-xl hover:bg-primary-dark"
         >
           {cta}
         </button>

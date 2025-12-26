@@ -10,8 +10,10 @@ const menus = [
 
 export default function Sidebar() {
   return (
-    <div className="h-full bg-white border-r p-4 flex flex-col">
-      <h1 className="text-xl font-bold mb-6 text-purple-600">MitraMuda</h1>
+    <div className="h-full bg-white border-r-2 border-r-primary p-4 flex flex-col">
+      <div className="border-b-2 border-b-primary p-6 mb-10">
+      <h1 className="text-3xl font-bold text-center text-primary">Mitra<span className="text-secondary">Muda</span></h1>
+      </div>
 
       <nav className="flex-1 space-y-2">
         {menus.map(m => (
@@ -19,10 +21,10 @@ export default function Sidebar() {
             key={m.path}
             to={m.path}
             className={({ isActive }) =>
-              `block px-4 py-2 rounded-lg ${
+              `block px-4 py-2 rounded-lg bg-gray-100  ${
                 isActive
-                  ? "bg-purple-600 text-white"
-                  : "text-gray-700 hover:bg-gray-100"
+                  ? "bg-primary text-white"
+                  : "text-gray-700 hover:bg-whiteGray"
               }`
             }
           >

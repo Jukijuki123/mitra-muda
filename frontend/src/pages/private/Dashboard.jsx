@@ -57,10 +57,11 @@ const Dashboard = () => {
     <div className="min-h-screen bg-gray-50">
       <main className="p-8">
         {/* Header */}
-        <div className="mb-8">
-          <h1 className="text-2xl font-bold text-gray-900">
-            Halo, {profile.name || profile.email}
+        <div className="mb-6 p-6 bg-primary rounded-xl">
+          <h1 className="text-3xl mb-1 font-bold text-white">
+            Selamat Datang, {profile.name || profile.email}
           </h1>
+          <p className='text-white mb-2'>Dari ide jadi realita, wujukan UMKM kekinian</p>
           {error && <div className="text-red-600 mt-2">{error}</div>}
         </div>
 
@@ -81,7 +82,7 @@ const Dashboard = () => {
         {ideas.length === 0 ? (
           <p className="text-gray-500">Belum ada ide yang tersedia.</p>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2  gap-6">
             {ideas.map((idea) => (
             <IdeaCard
               key={idea.id}
@@ -104,9 +105,9 @@ const Dashboard = () => {
 // Komponen kecil untuk statistik (aman & sederhana)
 function StatCard({ title, value }) {
   return (
-    <div className="bg-white p-6 rounded-xl shadow-sm">
-      <p className="text-sm text-gray-500">{title}</p>
-      <p className="text-3xl font-bold text-gray-900 mt-2">
+    <div className="bg-white border border-primary p-6 rounded-xl">
+      <p className="text-sm text-gray-800">{title}</p>
+      <p className="text-4xl font-bold text-black mt-2">
         {value}
       </p>
     </div>
