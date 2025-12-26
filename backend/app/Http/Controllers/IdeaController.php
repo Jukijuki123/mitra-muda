@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Idea;
+use App\Models\Like;
+use App\Models\Comment;
 use Illuminate\Http\Request;
 
 class IdeaController extends Controller
@@ -10,16 +12,23 @@ class IdeaController extends Controller
     public function index()
     {
         return response()->json(
-            Idea::with('user')->latest()->get()
+            Idea::with('user')
+                ->withCount(['likes', 'comments'])
+                ->latest()
+                ->get()
         );
     }
+
 
     public function show($id)
     {
         return response()->json(
-            Idea::with('user')->findOrFail($id)
+            Idea::with(['user', 'comments.user'])
+                ->withCount(['likes', 'comments'])
+                ->findOrFail($id)
         );
     }
+
 
     public function store(Request $request)
     {
@@ -38,4 +47,6 @@ class IdeaController extends Controller
 
         return response()->json($idea, 201);
     }
+
+
 }

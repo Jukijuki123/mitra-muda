@@ -30,14 +30,16 @@ const IdeaBoard = () => {
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {ideas.map(idea => (
-          <IdeaCard
-            key={idea.id}
-            judul={idea.judul}
-            deskripsi={idea.deskripsi}
-            kategori={{ label: idea.kategori }}
-            cta="Lihat Detail"
-            onClick={() => navigate(`/ideas/${idea.id}`)}
-          />
+        <IdeaCard
+          key={idea.id}
+          judul={idea.judul}
+          deskripsi={idea.deskripsi}
+          kategori={{ label: idea.kategori }}
+          likes={idea.likes_count}
+          comments={idea.comments_count}
+          cta="Lihat Detail"
+          onClick={() => navigate(`/ideas/${idea.id}`)}
+        />
         ))}
       </div>
     </div>

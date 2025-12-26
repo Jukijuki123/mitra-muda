@@ -21,6 +21,8 @@ const Dashboard = () => {
     }
     setProfile(user);
 
+  
+
     // Ambil data dashboard dari API
     api.get('/dashboard')
       .then(res => {
@@ -81,15 +83,16 @@ const Dashboard = () => {
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {ideas.map((idea) => (
-              <IdeaCard
-                key={idea.id}
-                judul={idea.judul}
-                deskripsi={idea.deskripsi}
-                kategori={{ label: idea.kategori }}
-                likes={idea.likes ?? 0}
-                comments={idea.comments ?? 0}
-                cta="Lihat Detail"
-              />
+            <IdeaCard
+              key={idea.id}
+              judul={idea.judul}
+              deskripsi={idea.deskripsi}
+              kategori={{ label: idea.kategori }}
+              likes={idea.likes_count}
+              comments={idea.comments_count}
+              cta="Lihat Detail"
+              onClick={() => navigate(`/ideas/${idea.id}`)}
+            />
             ))}
           </div>
         )}
