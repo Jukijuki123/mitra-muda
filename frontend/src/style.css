@@ -1,0 +1,21 @@
+@import "tailwindcss";
+@theme {
+
+    --color-primary-dark: #0046FF;
+    --color-primary: #007AFF;
+    --color-primary-light: #60B5FF;
+    --color-secondary: #FC6600;
+    --color-secondary-light: #F9812A;
+    --color-whiteGray: #F7F7F7;
+
+}
+
+
+.btn-primary {
+    @apply bg-secondary text-white font-semibold py-3 px-6 rounded-lg hover:bg-secondary-light transition transform hover:scale-105;
+}
+.btn-secondary {
+    @apply bg-white text-secondary font-semibold py-3 px-6 rounded-lg hover:bg-secondary-light hover:text-white transition transform hover:scale-105;
+}
+
+
