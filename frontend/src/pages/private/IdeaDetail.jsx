@@ -3,15 +3,29 @@ import { useParams } from "react-router-dom";
 import api from "../../api/axios";
 import { HandFist , MessageCircle, User } from "lucide-react";
 
+
 const IdeaDetail = () => {
   const { id } = useParams();
   const [idea, setIdea] = useState(null);
   const [comment, setComment] = useState("");
+  const [collabStatus, setCollabStatus] = useState(null);
+
 
   const fetchIdea = () => {
     api.get(`/ideas/${id}`)
       .then(res => setIdea(res.data));
   };
+
+  const fetchCollabStatus = () => {
+    api.get(`/ideas/${id}/collaboration-status`)
+      .then(res => setCollabStatus(res.data.status));
+  };
+
+  useEffect(() => {
+    fetchIdea();
+    fetchCollabStatus();
+  }, [id]);
+
 
   useEffect(() => {
     fetchIdea();
@@ -58,6 +72,7 @@ const IdeaDetail = () => {
 
       {/* Action */}
       <div className="flex items-center gap-6 mb-8">
+        
         <button
           onClick={handleLike}
           className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-xl hover:bg-blue-700 transition"
@@ -66,15 +81,36 @@ const IdeaDetail = () => {
           {idea.likes_count} Dukungan
         </button>
 
-        <button
-          onClick={() => {
-            api.post(`/ideas/${idea.id}/collaborate`)
-              .then(() => alert("Permintaan kolaborasi dikirim"));
-          }}
-          className="bg-green-600 text-white px-4 py-2 rounded-xl hover:bg-green-700"
-        >
-          🤝 Ajak Kolaborasi
-        </button>
+        {collabStatus === null && (
+          <button
+            onClick={() => {
+              api.post(`/ideas/${idea.id}/collaborate`)
+                .then(() => setCollabStatus('pending'));
+            }}
+            className="bg-green-600 text-white px-4 py-2 rounded-xl"
+          >
+            🤝 Ajak Kolaborasi
+          </button>
+        )}
+
+        {collabStatus === 'pending' && (
+          <span className="inline-block bg-yellow-100 text-yellow-700 px-4 py-2 rounded-xl font-semibold">
+            ⏳ Menunggu Persetujuan
+          </span>
+        )}
+
+        {collabStatus === 'accepted' && (
+          <span className="inline-block bg-green-100 text-green-700 px-4 py-2 rounded-xl font-semibold">
+            ✅ Kolaborasi Diterima
+          </span>
+        )}
+
+        {collabStatus === 'rejected' && (
+          <span className="inline-block bg-red-100 text-red-700 px-4 py-2 rounded-xl font-semibold">
+            ❌ Kolaborasi Ditolak
+          </span>
+        )}
+
 
         <div className="flex items-center gap-2 text-gray-500">
           <MessageCircle size={18} />

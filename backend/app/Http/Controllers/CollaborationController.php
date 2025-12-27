@@ -43,7 +43,6 @@ class CollaborationController extends Controller
     {
         return Collaboration::with(['idea', 'requester'])
             ->where('owner_id', auth()->id())
-            ->where('status', 'pending')
             ->get();
     }
 
@@ -65,6 +64,19 @@ class CollaborationController extends Controller
         return response()->json([
             'message' => 'Status kolaborasi diperbarui',
             'data' => $collab
+        ]);
+    }
+
+    public function status($ideaId)
+    {
+        $user = auth()->user();
+
+        $collab = Collaboration::where('idea_id', $ideaId)
+            ->where('requester_id', $user->id)
+            ->first();
+
+        return response()->json([
+            'status' => $collab?->status ?? null
         ]);
     }
 }

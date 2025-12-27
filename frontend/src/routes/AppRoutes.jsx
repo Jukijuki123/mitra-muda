@@ -14,6 +14,7 @@ import Kolaborasi from "../pages/private/Kolaborasi";
 import IdeaDetail from "../pages/private/IdeaDetail";
 import CreateIdea from "../pages/private/CreateIdea";
 import CollaborationRequest from "../pages/private/CollaborationRequest";
+import CollaborationChat from "../pages/private/CollaborationChat";
 
 export default function AppRoutes() {
     return (
@@ -37,6 +38,7 @@ export default function AppRoutes() {
                     <Route path="/ideas/:id" element={<IdeaDetail />} />
                     <Route path="/ideas/create" element={<CreateIdea />} />
                     <Route path="/collaborations" element={<CollaborationRequest />} />
+                    <Route path="/collaborations/:id/chat" element={<CollaborationChat />} />
                 </Route>
             </Routes>
         </Router>

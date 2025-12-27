@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ChatController;
 use App\Http\Controllers\CollaborationController;
 use App\Http\Controllers\CommentController;
 use App\Http\Controllers\DashboardController;
@@ -33,6 +34,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/ideas/{id}/collaborate', [CollaborationController::class, 'request']);
     Route::get('/collaborations/incoming', [CollaborationController::class, 'incoming']);
     Route::post('/collaborations/{id}/respond', [CollaborationController::class, 'respond']);
+    Route::get('/ideas/{id}/collaboration-status', [CollaborationController::class, 'status']);
 
+        // Chat
+    Route::get('/collaborations/{id}/chat', [ChatController::class, 'index']);
+    Route::post('/collaborations/{id}/chat', [ChatController::class, 'store']);
 
 });
