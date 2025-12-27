@@ -1,3 +1,5 @@
+import { HandFist  , MessageCircle, ArrowRight } from "lucide-react";
+
 export const IdeaCard = ({
   judul,
   deskripsi,
@@ -8,31 +10,40 @@ export const IdeaCard = ({
   onClick,
 }) => {
   return (
-    <div className="bg-white border border-primary rounded-xl p-5 flex flex-col justify-between">
+    <div className="bg-white border rounded-xl p-5 flex flex-col justify-between hover:shadow-md transition">
       <div>
-        <span className="text-sm text-blue-600 font-semibold px-5 py-1 bg-blue-600/20 rounded-full">
+        <span className="inline-block text-xs font-semibold text-blue-600 bg-blue-100 px-3 py-1 rounded-full">
           {kategori?.label}
         </span>
 
-        <h3 className="text-lg font-bold mt-2">
+        <h3 className="text-lg font-bold text-gray-900 mt-3">
           {judul}
         </h3>
 
-        <p className="text-gray-700 text-sm mt-2 line-clamp-2">
+        <p className="text-gray-600 text-sm mt-2 line-clamp-2">
           {deskripsi}
         </p>
       </div>
 
-      <div className="mt-4 flex items-center justify-between">
-        <span className="text-sm text-gray-500">
-          👍 {likes} · 💬 {comments}
-        </span>
+      <div className="mt-5 flex items-center justify-between">
+        <div className="flex items-center gap-4 text-sm text-gray-500">
+          <span className="flex items-center gap-1">
+            <HandFist   size={16} />
+            {likes}
+          </span>
+
+          <span className="flex items-center gap-1">
+            <MessageCircle size={16} />
+            {comments}
+          </span>
+        </div>
 
         <button
           onClick={onClick}
-          className="text-sm text-white font-semibold px-5 py-1 bg-blue-600 rounded-xl hover:bg-primary-dark"
+          className="flex items-center gap-1 px-4 py-1 rounded-md text-sm font-semibold text-white bg-primary hover:bg-primary-dark"
         >
           {cta}
+          <ArrowRight size={14} />
         </button>
       </div>
     </div>

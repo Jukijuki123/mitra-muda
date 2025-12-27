@@ -75,8 +75,8 @@ const Dashboard = () => {
         )}
 
         {/* Ideas */}
-        <h2 className="text-xl font-semibold text-gray-900 mb-6">
-          Ide Terbaru
+        <h2 className="text-2xl font-semibold text-gray-900 mb-6">
+          Ide Populer
         </h2>
 
         {ideas.length === 0 ? (

@@ -14,6 +14,7 @@ class IdeaController extends Controller
         return response()->json(
             Idea::with('user')
                 ->withCount(['likes', 'comments'])
+                ->orderByDesc('likes_count')
                 ->latest()
                 ->get()
         );

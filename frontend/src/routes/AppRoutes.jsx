@@ -13,6 +13,7 @@ import Tantangan from "../pages/private/Tantangan";
 import Kolaborasi from "../pages/private/Kolaborasi";
 import IdeaDetail from "../pages/private/IdeaDetail";
 import CreateIdea from "../pages/private/CreateIdea";
+import CollaborationRequest from "../pages/private/CollaborationRequest";
 
 export default function AppRoutes() {
     return (
@@ -35,6 +36,7 @@ export default function AppRoutes() {
                     <Route path="/tantangan" element={isAuthenticated() ? <Tantangan /> : <Navigate to="/login" />} />
                     <Route path="/ideas/:id" element={<IdeaDetail />} />
                     <Route path="/ideas/create" element={<CreateIdea />} />
+                    <Route path="/collaborations" element={<CollaborationRequest />} />
                 </Route>
             </Routes>
         </Router>

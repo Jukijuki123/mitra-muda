@@ -14,8 +14,9 @@ class DashboardController extends Controller
         // Ambil ide terbaru
         $ideas = Idea::with('user')
             ->withCount(['likes', 'comments'])
+            ->orderByDesc('likes_count')
             ->latest()
-            ->take(6)
+            ->take(4)
             ->get();
 
         // Statistik
